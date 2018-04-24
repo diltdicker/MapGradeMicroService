@@ -42,7 +42,15 @@ public class lab5map extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			//System.out.println();
+			String gradeStr = request.getParameter("grade");
+			double grade = Double.parseDouble(gradeStr);
+			response.getWriter().append(MapLogic.mapToLetterGrade(grade));
+		} catch (Exception e) {
+			response.getWriter().append(MapLogic.error(e));
+		}
+		
 	}
 
 }
